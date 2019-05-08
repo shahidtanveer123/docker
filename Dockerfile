@@ -1,7 +1,5 @@
-FROM alpine:3.4
-RUN apk add --update openssl ca-certificates
-COPY microscanner /microscanner
-RUN chmod +x /microscanner
-ARG token
-RUN /microscanner ${token}
-RUN echo "No vulnerabilities!"
+ FROM alpine
+RUN apk add --no-cache ca-certificates && update-ca-certificates
+ADD https://get.aquasec.com/microscanner .
+RUN chmod +x microscanner
+RUN ./microscanner ZDRhNjQyMzQ3Y2Rl
